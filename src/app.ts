@@ -2,9 +2,9 @@ import cors from 'cors';
 import express, { Application, Request, Response } from 'express';
 import userRouter from './app/modules/user/user.router';
 import productRouter from './app/modules/product/product.router';
-import { StatusCodes } from 'http-status-codes';
 import orderRouter from './app/modules/order/order.router';
 import { globalErrorHandler } from './app/middleeatres/globalErrorHandler';
+import authRouter from './app/modules/auth/auth.router';
 
 const app: Application = express();
 
@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 // application routes
+app.use('/api/auth', authRouter)
 app.use('/api/user', userRouter)
 app.use('/api/product', productRouter)
 app.use('/api/order', orderRouter)
